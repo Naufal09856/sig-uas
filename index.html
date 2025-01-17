@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>UAS SIG - Sekolah di Jakarta Pusat</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map = L.map("map").setView([-6.186, 106.834], 13);
+
+      var basemap = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      var sekolahIcon = L.icon({
+        iconUrl: "https://i.pinimg.com/736x/7c/ef/4d/7cef4d44050e27b5618b982e8b06abb2.jpg",
+        iconSize: [30, 30],
+      });
+
+      var sekolahData = [
+        { name: "SDN 01 Menteng", address: "Jl. Menteng No.1, Jakarta Pusat", coords: [-6.1901, 106.8301] },
+        { name: "SMP Negeri 1 Jakarta", address: "Jl. Cikini Raya No.87, Jakarta Pusat", coords: [-6.1908, 106.8372] },
+        { name: "SMA Negeri 4 Jakarta", address: "Jl. Batu No.3, Jakarta Pusat", coords: [-6.1857, 106.8341] },
+        { name: "SDN 02 Gondangdia", address: "Jl. Gondangdia Lama No.34, Jakarta Pusat", coords: [-6.1895, 106.8369] },
+        { name: "SMP Negeri 2 Jakarta", address: "Jl. Pegangsaan Barat No.3, Jakarta Pusat", coords: [-6.196, 106.8355] },
+        { name: "SMA Negeri 68 Jakarta", address: "Jl. Salemba Raya No.18, Jakarta Pusat", coords: [-6.1903, 106.8501] },
+        { name: "SDN 03 Kebon Sirih", address: "Jl. Kebon Sirih No.45, Jakarta Pusat", coords: [-6.1815, 106.8293] },
+        { name: "SMP Negeri 3 Jakarta", address: "Jl. Tanah Abang III No.10, Jakarta Pusat", coords: [-6.1709, 106.8261] },
+        { name: "SMA Negeri 5 Jakarta", address: "Jl. Kramat Raya No.93, Jakarta Pusat", coords: [-6.1863, 106.8456] },
+        { name: "SDN 04 Johar Baru", address: "Jl. Percetakan Negara No.12, Jakarta Pusat", coords: [-6.1705, 106.8664] },
+        { name: "SMP Negeri 4 Jakarta", address: "Jl. Kramat Pulo IV No.15, Jakarta Pusat", coords: [-6.185, 106.8504] },
+        { name: "SMA Negeri 6 Jakarta", address: "Jl. Cempaka Putih Barat No.11, Jakarta Pusat", coords: [-6.1774, 106.8609] },
+        { name: "SDN 05 Senen", address: "Jl. Kramat Jaya Baru No.7, Jakarta Pusat", coords: [-6.1772, 106.8476] },
+        { name: "SMP Negeri 5 Jakarta", address: "Jl. Rawa Kerbau No.14, Jakarta Pusat", coords: [-6.1789, 106.858] },
+        { name: "SMA Negeri 10 Jakarta", address: "Jl. Slamet Riyadi No.3, Jakarta Pusat", coords: [-6.1872, 106.8617] },
+        { name: "SDN 06 Cikini", address: "Jl. Cikini V No.11, Jakarta Pusat", coords: [-6.1909, 106.835] },
+        { name: "SMP Negeri 6 Jakarta", address: "Jl. Gunung Sahari No.45, Jakarta Pusat", coords: [-6.1568, 106.8427] },
+        { name: "SMA Negeri 20 Jakarta", address: "Jl. Samanhudi No.16, Jakarta Pusat", coords: [-6.1631, 106.8283] },
+        { name: "SDN 07 Sawah Besar", address: "Jl. Gunung Sahari Raya No.58, Jakarta Pusat", coords: [-6.155, 106.8335] },
+        { name: "SMP Negeri 7 Jakarta", address: "Jl. Lapangan Banteng Barat No.5, Jakarta Pusat", coords: [-6.1689, 106.8301] },
+        { name: "SMA Negeri 72 Jakarta", address: "Jl. Karang Anyar No.12, Jakarta Pusat", coords: [-6.1602, 106.8422] },
+        { name: "SDN 08 Kemayoran", address: "Jl. Garuda No.4, Jakarta Pusat", coords: [-6.1577, 106.8443] },
+        { name: "SMP Negeri 8 Jakarta", address: "Jl. Bungur Raya No.11, Jakarta Pusat", coords: [-6.1718, 106.8437] },
+        { name: "SMA Negeri 33 Jakarta", address: "Jl. Bendungan Jago No.10, Jakarta Pusat", coords: [-6.1676, 106.8555] },
+        { name: "SDN 09 Gambir", address: "Jl. Gambir No.2, Jakarta Pusat", coords: [-6.1768, 106.8277] },
+        { name: "SMP Negeri 9 Jakarta", address: "Jl. Pejambon No.3, Jakarta Pusat", coords: [-6.1749, 106.8305] },
+        { name: "SMA Negeri 24 Jakarta", address: "Jl. Pejompongan No.22, Jakarta Pusat", coords: [-6.1845, 106.8155] },
+        { name: "SDN 10 Pasar Baru", address: "Jl. Pasar Baru Timur No.25, Jakarta Pusat", coords: [-6.1687, 106.8325] },
+        { name: "SMP Negeri 10 Jakarta", address: "Jl. Krekot Bunder No.16, Jakarta Pusat", coords: [-6.168, 106.8313] },
+        { name: "SMA Negeri 77 Jakarta", address: "Jl. Krekot Jaya No.18, Jakarta Pusat", coords: [-6.1632, 106.832] },
+      ];
+
+      sekolahData.forEach(function (sekolah) {
+        var marker = L.marker(sekolah.coords, { icon: sekolahIcon });
+        marker.bindPopup(`<b>${sekolah.name}</b><br>${sekolah.address}`);
+        marker.addTo(map);
+      });
+    </script>
+  </body>
+</html>
